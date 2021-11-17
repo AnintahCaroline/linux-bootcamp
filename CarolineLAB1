@@ -1,0 +1,271 @@
+Creating resource group (input and output) 
+
+leena@Azure:~$ az group create --name caroline --location eastus
+{
+  "id": "/subscriptions/c40f76f6-a340-40f3-930a-cdba85821538/resourceGroups/caroline",
+  "location": "eastus",
+  "managedBy": null,
+  "name": "caroline",
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  
+  
+  
+  Create virtual machine (input and output)
+  
+  az vm create --resource-group caroline --name carolinevm --image UbuntuLTS --admin-username caroline --generate-ssh-keys
+SSH key files '/home/leena/.ssh/id_rsa' and '/home/leena/.ssh/id_rsa.pub' have been generated under ~/.ssh to allow SSH access to the VM. If using machines without permanent storage, back up your keys to a safe location.
+It is recommended to use parameter "--public-ip-sku Standard" to create new VM with Standard public IP. Please note that the default public IP used for VM creation will be changed from Basic toStandard in the future.
+{
+  "fqdns": "",
+  "id": "/subscriptions/c40f76f6-a340-40f3-930a-cdba85821538/resourceGroups/caroline/providers/Microsoft.Compute/virtualMachines/carolinevm",
+  "location": "eastus",
+  "macAddress": "00-22-48-26-C0-EC",
+  "powerState": "VM running",
+  "privateIpAddress": "10.0.0.4",
+  "publicIpAddress": "20.119.36.96",
+  "resourceGroup": "caroline",
+  "zones": ""
+}
+
+
+
+OPEN PORT 80 FOR WEB TRAFFIC (INPUT AND OUTPUT)
+
+az vm open-port --port 80 --resource-group caroline --name carolinevm
+{
+  "defaultSecurityRules": [
+    {
+      "access": "Allow",
+      "description": "Allow inbound traffic from all VMs in VNET",
+      "destinationAddressPrefix": "VirtualNetwork",
+      "destinationAddressPrefixes": [],
+      "destinationApplicationSecurityGroups": null,
+      "destinationPortRange": "*",
+      "destinationPortRanges": [],
+      "direction": "Inbound",
+      "etag": "W/\"d69f20de-dc51-4167-aad9-6a0697a47f0b\"",
+      "id": "/subscriptions/c40f76f6-a340-40f3-930a-cdba85821538/resourceGroups/caroline/providers/Microsoft.Network/networkSecurityGroups/carolinevmNSG/defaultSecurityRules/AllowVnetInBound",
+      "name": "AllowVnetInBound",
+      "priority": 65000,
+      "protocol": "*",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "caroline",
+      "sourceAddressPrefix": "VirtualNetwork",
+      "sourceAddressPrefixes": [],
+      "sourceApplicationSecurityGroups": null,
+      "sourcePortRange": "*",
+      "sourcePortRanges": [],
+      "type": "Microsoft.Network/networkSecurityGroups/defaultSecurityRules"
+    },
+    {
+      "access": "Allow",
+      "description": "Allow inbound traffic from azure load balancer",
+      "destinationAddressPrefix": "*",
+      "destinationAddressPrefixes": [],
+      "destinationApplicationSecurityGroups": null,
+      "destinationPortRange": "*",
+      "destinationPortRanges": [],
+      "direction": "Inbound",
+      "etag": "W/\"d69f20de-dc51-4167-aad9-6a0697a47f0b\"",
+      "id": "/subscriptions/c40f76f6-a340-40f3-930a-cdba85821538/resourceGroups/caroline/providers/Microsoft.Network/networkSecurityGroups/carolinevmNSG/defaultSecurityRules/AllowAzureLoadBalancerInBound",
+      "name": "AllowAzureLoadBalancerInBound",
+      "priority": 65001,
+      "protocol": "*",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "caroline",
+      "sourceAddressPrefix": "AzureLoadBalancer",
+      "sourceAddressPrefixes": [],
+      "sourceApplicationSecurityGroups": null,
+      "sourcePortRange": "*",
+      "sourcePortRanges": [],
+      "type": "Microsoft.Network/networkSecurityGroups/defaultSecurityRules"
+    },
+    {
+      "access": "Deny",
+      "description": "Deny all inbound traffic",
+      "destinationAddressPrefix": "*",
+      "destinationAddressPrefixes": [],
+      "destinationApplicationSecurityGroups": null,
+      "destinationPortRange": "*",
+      "destinationPortRanges": [],
+      "direction": "Inbound",
+      "etag": "W/\"d69f20de-dc51-4167-aad9-6a0697a47f0b\"",
+      "id": "/subscriptions/c40f76f6-a340-40f3-930a-cdba85821538/resourceGroups/caroline/providers/Microsoft.Network/networkSecurityGroups/carolinevmNSG/defaultSecurityRules/DenyAllInBound",
+      "name": "DenyAllInBound",
+      "priority": 65500,
+      "protocol": "*",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "caroline",
+      "sourceAddressPrefix": "*",
+      "sourceAddressPrefixes": [],
+      "sourceApplicationSecurityGroups": null,
+      "sourcePortRange": "*",
+      "sourcePortRanges": [],
+      "type": "Microsoft.Network/networkSecurityGroups/defaultSecurityRules"
+    },
+    {
+      "access": "Allow",
+      "description": "Allow outbound traffic from all VMs to all VMs in VNET",
+      "destinationAddressPrefix": "VirtualNetwork",
+      "destinationAddressPrefixes": [],
+      "destinationApplicationSecurityGroups": null,
+      "destinationPortRange": "*",
+      "destinationPortRanges": [],
+      "direction": "Outbound",
+      "etag": "W/\"d69f20de-dc51-4167-aad9-6a0697a47f0b\"",
+      "id": "/subscriptions/c40f76f6-a340-40f3-930a-cdba85821538/resourceGroups/caroline/providers/Microsoft.Network/networkSecurityGroups/carolinevmNSG/defaultSecurityRules/AllowVnetOutBound",
+      "name": "AllowVnetOutBound",
+      "priority": 65000,
+      "protocol": "*",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "caroline",
+      "sourceAddressPrefix": "VirtualNetwork",
+      "sourceAddressPrefixes": [],
+      "sourceApplicationSecurityGroups": null,
+      "sourcePortRange": "*",
+      "sourcePortRanges": [],
+      "type": "Microsoft.Network/networkSecurityGroups/defaultSecurityRules"
+    },
+    {
+      "access": "Allow",
+      "description": "Allow outbound traffic from all VMs to Internet",
+      "destinationAddressPrefix": "Internet",
+      "destinationAddressPrefixes": [],
+      "destinationApplicationSecurityGroups": null,
+      "destinationPortRange": "*",
+      "destinationPortRanges": [],
+      "direction": "Outbound",
+      "etag": "W/\"d69f20de-dc51-4167-aad9-6a0697a47f0b\"",
+      "id": "/subscriptions/c40f76f6-a340-40f3-930a-cdba85821538/resourceGroups/caroline/providers/Microsoft.Network/networkSecurityGroups/carolinevmNSG/defaultSecurityRules/AllowInternetOutBound",
+      "name": "AllowInternetOutBound",
+      "priority": 65001,
+      "protocol": "*",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "caroline",
+      "sourceAddressPrefix": "*",
+      "sourceAddressPrefixes": [],
+      "sourceApplicationSecurityGroups": null,
+      "sourcePortRange": "*",
+      "sourcePortRanges": [],
+      "type": "Microsoft.Network/networkSecurityGroups/defaultSecurityRules"
+    },
+    {
+      "access": "Deny",
+      "description": "Deny all outbound traffic",
+      "destinationAddressPrefix": "*",
+      "destinationAddressPrefixes": [],
+      "destinationApplicationSecurityGroups": null,
+      "destinationPortRange": "*",
+      "destinationPortRanges": [],
+      "direction": "Outbound",
+      "etag": "W/\"d69f20de-dc51-4167-aad9-6a0697a47f0b\"",
+      "id": "/subscriptions/c40f76f6-a340-40f3-930a-cdba85821538/resourceGroups/caroline/providers/Microsoft.Network/networkSecurityGroups/carolinevmNSG/defaultSecurityRules/DenyAllOutBound",
+      "name": "DenyAllOutBound",
+      "priority": 65500,
+      "protocol": "*",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "caroline",
+      "sourceAddressPrefix": "*",
+      "sourceAddressPrefixes": [],
+      "sourceApplicationSecurityGroups": null,
+      "sourcePortRange": "*",
+      "sourcePortRanges": [],
+      "type": "Microsoft.Network/networkSecurityGroups/defaultSecurityRules"
+    }
+  ],
+  "etag": "W/\"d69f20de-dc51-4167-aad9-6a0697a47f0b\"",
+  "flowLogs": null,
+  "id": "/subscriptions/c40f76f6-a340-40f3-930a-cdba85821538/resourceGroups/caroline/providers/Microsoft.Network/networkSecurityGroups/carolinevmNSG",
+  "location": "eastus",
+  "name": "carolinevmNSG",
+  "networkInterfaces": [
+    {
+      "dnsSettings": null,
+      "dscpConfiguration": null,
+      "enableAcceleratedNetworking": null,
+      "enableIpForwarding": null,
+      "etag": null,
+      "extendedLocation": null,
+      "hostedWorkloads": null,
+      "id": "/subscriptions/c40f76f6-a340-40f3-930a-cdba85821538/resourceGroups/caroline/providers/Microsoft.Network/networkInterfaces/carolinevmVMNic",
+      "ipConfigurations": null,
+      "location": null,
+      "macAddress": null,
+      "migrationPhase": null,
+      "name": null,
+      "networkSecurityGroup": null,
+      "nicType": null,
+      "primary": null,
+      "privateEndpoint": null,
+      "privateLinkService": null,
+      "provisioningState": null,
+      "resourceGroup": "caroline",
+      "resourceGuid": null,
+      "tags": null,
+      "tapConfigurations": null,
+      "type": null,
+      "virtualMachine": null,
+      "workloadType": null
+    }
+  ],
+  "provisioningState": "Succeeded",
+  "resourceGroup": "caroline",
+  "resourceGuid": "3a526c51-50f7-4f34-a667-59cc4c1d1fad",
+  "securityRules": [
+    {
+      "access": "Allow",
+      "description": null,
+      "destinationAddressPrefix": "*",
+      "destinationAddressPrefixes": [],
+      "destinationApplicationSecurityGroups": null,
+      "destinationPortRange": "22",
+      "destinationPortRanges": [],
+      "direction": "Inbound",
+      "etag": "W/\"d69f20de-dc51-4167-aad9-6a0697a47f0b\"",
+      "id": "/subscriptions/c40f76f6-a340-40f3-930a-cdba85821538/resourceGroups/caroline/providers/Microsoft.Network/networkSecurityGroups/carolinevmNSG/securityRules/default-allow-ssh",
+      "name": "default-allow-ssh",
+      "priority": 1000,
+      "protocol": "Tcp",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "caroline",
+      "sourceAddressPrefix": "*",
+      "sourceAddressPrefixes": [],
+      "sourceApplicationSecurityGroups": null,
+      "sourcePortRange": "*",
+      "sourcePortRanges": [],
+      "type": "Microsoft.Network/networkSecurityGroups/securityRules"
+    },
+    {
+      "access": "Allow",
+      "description": null,
+      "destinationAddressPrefix": "*",
+      "destinationAddressPrefixes": [],
+      "destinationApplicationSecurityGroups": null,
+      "destinationPortRange": "80",
+      "destinationPortRanges": [],
+      "direction": "Inbound",
+      "etag": "W/\"d69f20de-dc51-4167-aad9-6a0697a47f0b\"",
+      "id": "/subscriptions/c40f76f6-a340-40f3-930a-cdba85821538/resourceGroups/caroline/providers/Microsoft.Network/networkSecurityGroups/carolinevmNSG/securityRules/open-port-80",
+      "name": "open-port-80",
+      "priority": 900,
+      "protocol": "*",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "caroline",
+      "sourceAddressPrefix": "*",
+      "sourceAddressPrefixes": [],
+      "sourceApplicationSecurityGroups": null,
+      "sourcePortRange": "*",
+      "sourcePortRanges": [],
+      "type": "Microsoft.Network/networkSecurityGroups/securityRules"
+    }
+  ],
+  "subnets": null,
+  "tags": {},
+  "type": "Microsoft.Network/networkSecurityGroups"
+}
+
+
+
+CONNECT TO VIRTUAL MACHINE ()
