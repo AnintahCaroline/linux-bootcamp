@@ -70,5 +70,5 @@ sudo apt-get -y apache2
 ```
 
 ## 7 Viewing the web server in action
-The webserver can be viewed by going to the IP adress of the virtual machine.
+The webserver can be viewed by going to the IP address of the virtual machine.
 
