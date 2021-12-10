@@ -22,6 +22,7 @@ Quickstart for Bash in Azure Cloud Shell
 
 ## 1 Launching Azure Cloud Shell
 Azure Cloud Shell is an interactive, authenticated, browser-accessible shell for managing Azure resources. It provides the flexibility of choosing the shell experience that best suits the way you work, either Bash or PowerShell.
+
 **HOW TO LAUNCH AZURE CLOUD SHELL**
 To launch Azure Cloud Shell click on the cloud shell icon on your Azure portal
 
