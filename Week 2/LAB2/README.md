@@ -41,6 +41,17 @@ ssh -i privatekey.pem ec2ipaddress
 In AWS, vm images are called Amazon machine images (AMI). AMI's are formed from snapshots of the EC2 operatings systems and hardware configurations. They are used to easily spin up new  identical EC2 instances when the demand arises. 
 
 
-##  4. Understand VM sizes
+##  4. Understanding VM sizes
+These refer to the various compute capacities of the EC2 instances. They help determine the power allocated to each virtual server. e.g T2 micro
+
+## 5. VM power states
+This refers to the operation status of a virual machine. The various power state include:
+
+* Running: This state means the EC2 instance is in operation, during this state, an instance is billed normally
+* Terminated: This is the state which the instance is stopped and can not be resumed
+* De-allocated: During this state, the EC2 instance is not connected to any storage volume; it is in a detached state.
+* Stopped: During this state, the EC2 instance is no longer running. Once restarted, it is given a new IP address.
 
 
+## 6. Management tasks
+This refers to the various commands used to manage the AWS resources.
