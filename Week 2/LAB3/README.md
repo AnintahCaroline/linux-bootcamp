@@ -214,7 +214,7 @@ curl $HTTP_ADDRESS
 # Stop the instance.
 gcloud compute instances stop web-instance-01
 ```
-
+....
 ## More information
 
 [Free Trial and Free Tier](https://cloud.google.com/free "Free Trial and Free Tier")
@@ -230,3 +230,9 @@ gcloud compute instances stop web-instance-01
 [The gcloud cheat sheet](https://cloud.google.com/sdk/docs/cheatsheet "The gcloud cheat sheet")
 
 [The gcloud cheat sheet: Understanding commands](https://cloud.google.com/sdk/docs/cheatsheet#understanding_commands "The gcloud cheat sheet: Understanding commands")
+
+
+
+
+# GCP
+**Google Cloud (also known as Google Cloud Platform or GCP) is a provider of computing resources for developing, deploying, and operating applications on the Web. ... GCP leases software, along with the resources needed to support that software and the tools with which such software is developed, on a pay-as-you-go basis**
