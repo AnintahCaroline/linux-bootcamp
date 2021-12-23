@@ -314,7 +314,7 @@ Output
   
   ## 4. SSH into my VM
   
-  **Command to SSH into VM**
+  **Command to SSH into a VM**
   ```
   ssh caroline@20.127.92.128
   ```
