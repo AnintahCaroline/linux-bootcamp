@@ -15,3 +15,9 @@ Tutorial: Host a WordPress blog on Amazon Linux 2
 
 Sample Gist
 * https://gist.github.com/mikepfeiffer/c079608703e604224e58a3d40d0fa043#file-lamp-linux-aws-sh
+
+
+# Things learnt whilst Installing a LAMP stack on an Azure Linux VM
+
+
+**1. Prepare the LAMP server**
